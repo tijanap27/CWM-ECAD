@@ -22,6 +22,8 @@ module AC(
     output reg heating,
     output reg cooling
     );
+    
+// I think this is completely incorrect but gotta figure it out tmr
 
     always @(posedge clk) begin
       if ((heating==1)&(cooling==0))

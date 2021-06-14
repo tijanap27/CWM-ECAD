@@ -15,7 +15,7 @@ module top_tb(
     
     parameter CLK_PERIOD = 10;
 
-	  reg clk;
+    reg clk;
     reg rst;
     reg button;
     reg err;

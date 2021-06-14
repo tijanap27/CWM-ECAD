@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Exercise #6 - RGB Colour Converter
-// Student Name:
-// Date: 
+// Student Name: Tijana Petrovic
+// Date: 15.06.2021.
 //
 //
 //  Description: In this exercise, you need to design a memory with 8 entries, 
@@ -14,4 +14,13 @@
 //           rgb [23:0]
 //
 //////////////////////////////////////////////////////////////////////////////////
+
+module RGB_Converter(
+	input clk,
+	input[2:0] colour,
+	input enable,
+	output [23:0] rgb
+	);
+  
+//not finished
 

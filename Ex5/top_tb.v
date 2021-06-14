@@ -15,13 +15,11 @@ module top_tb(
   parameter CLK_PERIOD = 10;
   
   reg clk;
-  reg heating;
-  reg cooling;
+  wire heating;
+  wire cooling;
   reg err;
-  wire [0:4] temperature; 
-  reg [0:4] prev_temperature;
-  
-  
+  reg [0:4] temperature; 
+
   initial begin
       clk = 1'b0;
       
@@ -29,36 +27,30 @@ module top_tb(
         #(CLK_PERIOD/2) clk=~clk;
    end
   end
-  
-	initial begin
+	
+  initial begin
     err = 0;
-    prev_temperature = temperature;
-    
-    if(temperature<5'b10010)
-      heating = 1'b1;
-      cooling = 1'b0;
-    if(temperature>5'10110)
-      heating = 1'b0;
-      cooling = 1'b1;
-    else
-      heating = 1'b0;
-      cooling = 1'b0;
+    temperature = 5'b01111 // 15
     
     forever begin
     #CLK_PERIOD
     if((temperature<5'b10010)&(heating != 1'b1)&(cooling != 1'b0)) begin 
         err = 1;
-        $display("*** Test Failed :( *** temperature = %b", temperature);
+	$display("*** Test Failed :( *** wrong AC at temperature = %b", temperature);
     end
     if ((temperature>5'10110)&(heating = 1'b0)&(cooling = 1'b1)) begin
         err = 1;
-        $display("*** Test Failed :( *** temperature = %b", temperature);
+	$display("*** Test Failed :( *** wrong AC at temperature = %b", temperature);
     end 
     if ((temperature>5'b10010)&(temperature<5'10110)&(heating != 1'b0)&(cooling != 1'b1)) begin
         err = 1;
-        $display("*** Test Failed :( *** temperature = %b", temperature);
+	$display("*** Test Failed :( *** wrong AC at temperature = %b", temperature);
     end 
-    prev_temperature = temperature;
+	    
+    temperature <= temperature + 5'b00001;
+    if (temperature>5'b11111)
+	temperature<=5'b00000;
+	    
     end 
   end
   

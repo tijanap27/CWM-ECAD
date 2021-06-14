@@ -83,8 +83,8 @@ end
 	LED top (
 	        .clk (clk),
 	        .rst (rst),
-		      .button (button),
-          .colour (colour)
+		.button (button),
+          	.colour (colour)
 	     );
 
 endmodule 

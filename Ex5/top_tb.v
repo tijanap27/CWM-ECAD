@@ -18,7 +18,7 @@ module top_tb(
   wire heating;
   wire cooling;
   reg err;
-  reg [0:4] temperature; 
+  reg [4:0] temperature; 
 
   initial begin
       clk = 1'b0;

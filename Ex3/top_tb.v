@@ -23,7 +23,7 @@ module top_tb(
     wire [7:0] counter_out;
     reg [7:0] counter_out_prev;
 
-    inital begin
+    initial begin
     	clk = 1'b0;
     
         forever

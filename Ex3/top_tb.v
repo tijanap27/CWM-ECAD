@@ -79,7 +79,7 @@ module top_tb(
         $finish;
     end
 
-    counter top(.rst (rst), 
+    monitor top(.rst (rst), 
                 .on_off (on_off), 
                 .change (change), 
                 .clk (clk), 

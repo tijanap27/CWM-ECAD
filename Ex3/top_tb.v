@@ -59,19 +59,19 @@ module top_tb(
 		        err = 1;
 		end
 		    
-	    	counter_out_prev = counter_out;
-            	if (on_off == 0)
-            	on_off = 1;
-        	if (counter_out==8'b00000011)
-            		change = 0;
-            	if ((change == 0) & (counter_out == 8'b00000001))
-			rst = 1;
-	    	if (counter_out == 0)
-			rst = 0;
-	    	if (rst == 1)
-			change = 1;
-        	end
-		end
+	    counter_out_prev = counter_out;
+            if (on_off == 0)
+            on_off = 1;
+            if (counter_out==8'b00000011)
+            	change = 0;
+            if ((change == 0) & (counter_out == 8'b00000001))
+		rst = 1;
+	    if (counter_out == 0)
+		rst = 0;
+	    if (rst == 1)
+		change = 1;
+            end
+	end
     
     initial begin
         #50 

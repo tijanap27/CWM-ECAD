@@ -22,22 +22,21 @@ module AC(
     output reg heating,
     output reg cooling
     );
-    
-// I think this is completely incorrect but gotta figure it out tmr
 
-    always @(posedge clk) begin
-      if ((heating==1)&(cooling==0))
-        if(temperature>=5'b10100)
-          heating = 0
-      if ((heating==0)&(cooling==0)) 
-        if(temperature<=5'b10010)
-          heating = 1
-        if (temperature>=5'b10110)
-          cooling = 1
-      if((heating==0)&(cooling==1))
-        if (temperature<=5'b10100)  
-          cooling = 0
-     end
-
+	always @(posedge clk) begin
+        if (temperature<=5'b10010) begin
+			heating = 1;
+			cooling = 0;
+		end
+        else if (temperature>5'b10010 && temperature<5'b10110) begin
+			heating = 0;
+			cooling = 0;
+		end
+		else begin
+			heating = 0;
+			cooling = 1;
+		end
+	end                 
+            
 endmodule
 

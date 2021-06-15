@@ -46,7 +46,6 @@ module top_tb(
 		end
 		    
 		#6
-		on_off = 0;
             	if((on_off&&(counter_out==counter_out_prev))|(!on_off&&(counter_out!=counter_out_prev))) begin
 			$display("***TEST FAILED! on/off error");
 		        err = 1;
@@ -64,21 +63,6 @@ module top_tb(
 		begin
 			$display("***TEST FAILED! tick gap error");
 			err = 1;
-		end
-		    
-		#6
-		on_off = 1;
-            	if((on_off&&(counter_out==counter_out_prev))|(!on_off&&(counter_out!=counter_out_prev))) begin
-			$display("***TEST FAILED! on/off error");
-		        err = 1;
-		end
-            	if((change&&(counter_out!=counter_out_prev + 1))|(!change&&(counter_out!=counter_out_prev - 1))) begin
-			$display("***TEST FAILED! change error");
-		        err = 1; 
-		end
-		if(rst&&(counter_out!=0)) begin
-		        $display("***TEST FAILED! rst error");
-		        err = 1;
 		end
 		    
 	    counter_out_prev = counter_out;

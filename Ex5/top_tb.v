@@ -33,27 +33,26 @@ module top_tb(
     temperature = 5'b01111 // 15
     
     forever begin
-    #CLK_PERIOD
-    if((temperature<5'b10010)&(heating != 1'b1)&(cooling != 1'b0)) begin 
-        err = 1;
-	$display("*** Test Failed :( *** wrong AC at temperature = %b", temperature);
-    end
-    if ((temperature>5'10110)&(heating = 1'b0)&(cooling = 1'b1)) begin
-        err = 1;
-	$display("*** Test Failed :( *** wrong AC at temperature = %b", temperature);
-    end 
-    if ((temperature>5'b10010)&(temperature<5'10110)&(heating != 1'b0)&(cooling != 1'b1)) begin
-        err = 1;
-	$display("*** Test Failed :( *** wrong AC at temperature = %b", temperature);
-    end 
+    	#CLK_PERIOD
+    	if((temperature<5'b10010)&(heating != 1'b1)&(cooling != 1'b0)) begin 
+        	err = 1;
+		$display("*** Test Failed :( *** wrong AC at temperature = %b", temperature);
+    	end
+    	if ((temperature>5'10110)&(heating = 1'b0)&(cooling = 1'b1)) begin
+        	err = 1;
+		$display("*** Test Failed :( *** wrong AC at temperature = %b", temperature);
+    	end 
+    	if ((temperature>5'b10010)&(temperature<5'10110)&(heating != 1'b0)&(cooling != 1'b1)) begin
+        	err = 1;
+		$display("*** Test Failed :( *** wrong AC at temperature = %b", temperature);
+    	end 
 	    
-    temperature <= temperature + 5'b00001;
-    if (temperature>5'b11111)
-	temperature<=5'b00000;
+    	temperature <= temperature + 5'b00001;
+    	if (temperature>5'b11111)
+		temperature<=5'b00000;
 	    
-    end 
+    	end 
   end
-  
   
   initial begin
     #500

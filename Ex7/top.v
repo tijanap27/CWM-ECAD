@@ -27,21 +27,20 @@ module Lights_Selector(
 	wire [23:0] rgb;
 
 LED myled(.clk(clk),
-	        .rst(rst),
-	        .button(button),
-	        .colour(colour)
-	        );
+	  .rst(rst)
+	  .button(button),
+          .colour(colour)
+	  );
 
 RGB_Converter myrgb(.clk(clk),
-	                  .colour(colour),
-	                  .enable(1'b1),
-	                  .rgb(rgb)
-	                  );
+	            .colour(colour),
+	            .enable(1'b1),
+	            .rgb(rgb)
+                  );
 
 doorbell mydoorbell(.a(24'hFFFFFF),
-	                  .b(rgb),
-	                  .sel(sel),
-	                  .out(light)
-	                   );
-
+	            .b(rgb),
+	            .sel(sel),
+	            .out(light)
+	            );
 endmodule

@@ -22,7 +22,7 @@ module RGB_Converter(
 	output [23:0] rgb
 	);
   
-block_memory_generator_6 your_instance_name (
+block_memory_generator your_instance_name (
   .clka(clk),    
   .ena(enable),      
   .wea(1'b0),      

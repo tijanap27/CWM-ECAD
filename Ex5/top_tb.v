@@ -30,7 +30,7 @@ module top_tb(
 	
   initial begin
     err = 0;
-    temperature = 5'b01111 // 15
+    temperature = 5'b01111; // 15
     
     forever begin
     	#CLK_PERIOD

@@ -106,7 +106,7 @@ initial begin
       $finish;
  end
      
-RGB top (.enable (enable),
+RGB_Converter top (.enable (enable),
 	       .colour (colour),
 	       .rgb (rgb),
 	       .clk (clk)

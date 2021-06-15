@@ -36,37 +36,37 @@ initial begin
 	rst = 1;
 	change = 0;
 	on_off = 1;
-	prev_counter_out = 0;
+	counter_out_prev = 0;
 	
 	#CLK_PERIOD
 	forever begin
-		prev_counter_out = counter_out;
+		counter_out_prev = counter_out;
 		#CLK_PERIOD
-		if(((counter_out!=0)&&(rst==1))||((counter_out!=prev_counter_out)&&(change==0)&&(rst==0))||((counter_out!=prev_counter_out+1)&&(change==1)&&(rst==0)&&(on_off==1))||((counter_out!=prev_counter_out-1)&&(change==1)&&(rst==0)&&(on_off==0))) begin
+		if(((counter_out!=0)&&(rst==1))||((counter_out!=counter_out_prev)&&(change==0)&&(rst==0))||((counter_out!=counter_out_prev+1)&&(change==1)&&(rst==0)&&(on_off==1))||((counter_out!=counter_out_prev-1)&&(change==1)&&(rst==0)&&(on_off==0))) begin
 			$display("***TEST FAILED! :( ***");
 			err = 1;
 		end
 
 		rst = 0;
-		prev_counter_out = counter_out;
+		counter_out_prev = counter_out;
 		#CLK_PERIOD
-		if(((counter_out!=0)&&(rst==1))||((counter_out!=prev_counter_out)&&(change==0)&&(rst==0))||((counter_out!=prev_counter_out+1)&&(change==1)&&(rst==0)&&(on_off==1))||((counter_out!=prev_counter_out-1)&&(change==1)&&(rst==1)&&(on_off==0))) begin
+		if(((counter_out!=0)&&(rst==1))||((counter_out!=counter_out_prev)&&(change==0)&&(rst==0))||((counter_out!=counter_out_prev+1)&&(change==1)&&(rst==0)&&(on_off==1))||((counter_out!=counter_out_prev-1)&&(change==1)&&(rst==1)&&(on_off==0))) begin
 			$display("***TEST FAILED! :( ***");
 			err = 1;
 		end
 
 		change = 1;
-		prev_counter_out = counter_out;
+		counter_out_prev = counter_out;
 		#CLK_PERIOD
-		if(((counter_out!=0)&&(rst==1))||((counter_out!=prev_counter_out)&&(change==0)&&(rst==0))||((counter_out!=prev_counter_out+1)&&(change==1)&&(rst==0)&&(on_off==1))||((counter_out!=prev_counter_out-1)&&(change==1)&&(rst==0)&&(on_off==0))) begin
+		if(((counter_out!=0)&&(rst==1))||((counter_out!=counter_out_prev)&&(change==0)&&(rst==0))||((counter_out!=counter_out_prev+1)&&(change==1)&&(rst==0)&&(on_off==1))||((counter_out!=counter_out_prev-1)&&(change==1)&&(rst==0)&&(on_off==0))) begin
 			$display("***TEST FAILED! :( ***");
 			err = 1;
 			end
 
 		on_off = 0;
-		prev_counter_out = counter_out;
+		counter_out_prev = counter_out;
 		#CLK_PERIOD
-		if(((counter_out!=0)&&(rst==1))||((counter_out!=prev_counter_out)&&(change==0)&&(rst==0))||((counter_out!=prev_counter_out+1)&&(change==1)&&(rst==0)&&(on_off==1))||((counter_out!=prev_counter_out-1)&&(change==1)&&(rst==0)&&(on_off==0))) begin
+		if(((counter_out!=0)&&(rst==1))||((counter_out!=counter_out_prev)&&(change==0)&&(rst==0))||((counter_out!=counter_out_prev+1)&&(change==1)&&(rst==0)&&(on_off==1))||((counter_out!=counter_out_prev-1)&&(change==1)&&(rst==0)&&(on_off==0))) begin
 			$display("***TEST FAILED! :( ***");
 			err = 1;
 		end

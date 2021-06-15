@@ -46,11 +46,11 @@ module top_tb(
 		end
 		#6
             	if((on_off&&(counter_out==counter_out_prev))|(!on_off&&(counter_out!=counter_out_prev))) begin
-		        $display("***TEST FAILED! enable error");
+			$display("***TEST FAILED! on/off error");
 		        err = 1;
 		end
             	if((change&&(counter_out!=counter_out_prev + 1))|(!change&&(counter_out!=counter_out_prev - 1))) begin
-		        $display("***TEST FAILED! direction error");
+			$display("***TEST FAILED! change error");
 		        err = 1; 
 		end
 		if(rst&&(counter_out!=0)) begin

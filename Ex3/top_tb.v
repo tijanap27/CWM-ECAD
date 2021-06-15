@@ -97,6 +97,7 @@ module top_tb(
 		        $display("***TEST FAILED! rst error");
 		        err = 1;
 		end
+	    end
 	end
     
     initial begin

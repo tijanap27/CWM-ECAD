@@ -38,11 +38,11 @@ module top_tb(
         	err = 1;
 		$display("*** Test Failed :( *** wrong AC at temperature = %b", temperature);
     	end
-	if ((temperature>=5'10110)&(heating != 1'b0)&(cooling != 1'b1)) begin
+	if ((temperature>=5'b10110)&(heating != 1'b0)&(cooling != 1'b1)) begin
         	err = 1;
 		$display("*** Test Failed :( *** wrong AC at temperature = %b", temperature);
     	end 
-	if ((temperature>5'b10010)&(temperature<5'10110)&(heating != 1'b0)&(cooling != 1'b0)) begin
+	if ((temperature>5'b10010)&(temperature<5'b10110)&(heating != 1'b0)&(cooling != 1'b0)) begin
         	err = 1;
 		$display("*** Test Failed :( *** wrong AC at temperature = %b", temperature);
     	end 

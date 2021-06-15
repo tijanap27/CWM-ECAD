@@ -28,8 +28,7 @@ module monitor (
                     
     always @ (posedge clk) begin
         if(rst) counter_out = 0;
-        else
-        if(change)
+        else if(change)
             if (on_off) counter_out = counter_out + 1;
             else counter_out = counter_out - 1;
     end

@@ -42,8 +42,8 @@ initial begin
 	forever begin
 		counter_out_prev = counter_out;
 		#CLK_PERIOD
-		if(((counter_out!=0)&&(rst==1))||((counter_out!=counter_out_prev)&&(change==0)&&(rst==0))||((counter_out!=counter_out_prev+1)&&(change==1)&&(rst==0)&&(on_off==1))||((counter_out!=counter_out_prev-1)&&(change==1)&&(rst==0)&&(on_off==0))) begin
-			$display("***TEST FAILED! :( *** %b", counter_out);
+		if((((counter_out!=0)&&(rst==1))||((counter_out!=counter_out_prev)&&(change==0)&&(rst==0))||((counter_out!=counter_out_prev+1)&&(change==1)&&(rst==0)&&(on_off==1))||((counter_out!=counter_out_prev-1)&&(change==1)&&(rst==0)&&(on_off==0)))&&(count_out!=7'b1111111) begin
+			$display("***TEST FAILED! :( ***");
 			err = 1;
 		end
 

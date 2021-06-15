@@ -28,13 +28,13 @@ initial begin
 end
 
 initial begin
-	#(CLK_PERIOD)
 	err = 0;
 	enable = 0;
-	colour = 3'b000;
 	
+	#(CLK_PERIOD)
+	colour = 3'b000;
 	if (rgb != 24'b0) begin
-		$display("***TEST FAILED :( ***");
+		$display("***TEST FAILED :( enable 0, colour 0***");
 		err = 1;
 	end
 
@@ -44,56 +44,56 @@ initial begin
 		#(CLK_PERIOD)
 		colour = 3'b000;
 		if (rgb!=24'b0) begin
-			$display("***TEST FAILED :( ***");
+			$display("***TEST FAILED :( , colour 0***");
 			err = 1;
 		end
 		
 		#(CLK_PERIOD)
 		colour = 3'b001;
 		if (rgb!=24'b000000000000000011111111) begin
-			$display("***TEST FAILED :( ***");
+			$display("***TEST FAILED :( ***, colour 1");
 			err = 1;
 		end
 
 		#(CLK_PERIOD)
 		colour = 3'b010;
 		if (rgb!=24'b000000001111111100000000) begin
-			$display("***TEST FAILED :( ***");
+			$display("***TEST FAILED :( ***, colour 2");
 			err = 1;
 		end
 
 		#(CLK_PERIOD)
 		colour = 3'b011;
 		if (rgb!=24'b000000001111111111111111) begin
-			$display("***TEST FAILED :( ***");
+			$display("***TEST FAILED :( ***, colour 3");
 			err = 1;
 		end
 
 		#(CLK_PERIOD)
 		colour = 3'b100;
 		if (rgb!=24'b111111110000000000000000) begin
-			$display("***TEST FAILED :( ***");
+			$display("***TEST FAILED :( ***, colour 4");
 			err = 1;
 		end
 
 		#(CLK_PERIOD)
 		colour = 3'b101;
 		if (rgb!=24'b111111110000000011111111) begin
-			$display("***TEST FAILED :( ***");
+			$display("***TEST FAILED :( ***, colour 5");
 			err = 1;
 		end
 
 		#(CLK_PERIOD)
 		colour = 3'b110;
 		if (rgb!=24'b111111111111111100000000) begin
-			$display("***TEST FAILED :( ***");
+			$display("***TEST FAILED :( ***, colour 6");
 			err = 1;
 		end
 
 		#(CLK_PERIOD)
 		colour = 3'b111;
 		if (rgb!=24'b111111111111111111111111) begin
-			$display("***TEST FAILED :( ***");
+			$display("***TEST FAILED :( ***, colour 7");
 			err = 1;
 		end
 	end

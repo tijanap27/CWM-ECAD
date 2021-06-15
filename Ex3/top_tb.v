@@ -44,7 +44,30 @@ module top_tb(
 			$display("***TEST FAILED! tick gap error");
 			err = 1;
 		end
+		    
 		#6
+		on_off = 0;
+            	if((on_off&&(counter_out==counter_out_prev))|(!on_off&&(counter_out!=counter_out_prev))) begin
+			$display("***TEST FAILED! on/off error");
+		        err = 1;
+		end
+            	if((change&&(counter_out!=counter_out_prev + 1))|(!change&&(counter_out!=counter_out_prev - 1))) begin
+			$display("***TEST FAILED! change error");
+		        err = 1; 
+		end
+		if(rst&&(counter_out!=0)) begin
+		        $display("***TEST FAILED! rst error");
+		        err = 1;
+		end
+				on_off = 0;
+		if (counter_out != counter_out_prev)
+		begin
+			$display("***TEST FAILED! tick gap error");
+			err = 1;
+		end
+		    
+		#6
+		on_off = 1;
             	if((on_off&&(counter_out==counter_out_prev))|(!on_off&&(counter_out!=counter_out_prev))) begin
 			$display("***TEST FAILED! on/off error");
 		        err = 1;
@@ -60,7 +83,7 @@ module top_tb(
 		    
 	    counter_out_prev = counter_out;
             if (on_off == 0)
-            on_off = 1;
+            	on_off = 1;
             if (counter_out==8'b00000011)
             	change = 0;
             if ((change == 0) & (counter_out == 8'b00000001))

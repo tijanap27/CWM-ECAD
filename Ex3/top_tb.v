@@ -70,6 +70,33 @@ module top_tb(
 	    if (rst == 1)
 		change = 1;
             end
+	    
+	    err = 0;
+	    change = 1;
+	    rst = 1;
+	    clk = 0;
+	    on_off = 1;
+	    #6
+	    forever begin
+            	#(CLK_PERIOD - 6) 
+		if (counter_out != counter_out_prev)
+		begin
+			$display("***TEST FAILED! tick gap error");
+			err = 1;
+		end
+		#6
+            	if((on_off&&(counter_out==counter_out_prev))|(!on_off&&(counter_out!=counter_out_prev))) begin
+		        $display("***TEST FAILED! enable error");
+		        err = 1;
+		end
+            	if((change&&(counter_out!=counter_out_prev + 1))|(!change&&(counter_out!=counter_out_prev - 1))) begin
+		        $display("***TEST FAILED! direction error");
+		        err = 1; 
+		end
+		if(rst&&(counter_out!=0)) begin
+		        $display("***TEST FAILED! rst error");
+		        err = 1;
+		end
 	end
     
     initial begin

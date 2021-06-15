@@ -101,7 +101,7 @@ module top_tb(
 	end
     
     initial begin
-        #50 
+        #500
         if (err == 0)
           $display("***TEST PASSED! :) ***");
         $finish;

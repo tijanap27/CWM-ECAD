@@ -85,14 +85,14 @@ initial begin
 
 		#(CLK_PERIOD)
 		colour = 3'b110;
-		if (rgb!=24'111111111111111100000000) begin
+		if (rgb!=24'b111111111111111100000000) begin
 			$display("***TEST FAILED :( ***");
 			err = 1;
 		end
 
 		#(CLK_PERIOD)
 		colour = 3'b111;
-		if (rgb!=24'111111111111111111111111) begin
+		if (rgb!=24'b111111111111111111111111) begin
 			$display("***TEST FAILED :( ***");
 			err = 1;
 		end

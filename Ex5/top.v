@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Exercise #5 - Air Conditioning
-// Student Name:
-// Date: 
+// Student Name: Tijana Petrovic
+// Date: 15.06.2021.
 //
 //  Description: In this exercise, you need to an air conditioning control system
 //  According to the state diagram provided in the exercise.
@@ -28,29 +28,19 @@ module AC(
 // 22 = 10110
 	
      always @(posedge clk) begin
-	     if ((heating==1)&(cooling==0)) begin
-		if(temperature>=5'b10100) begin
-          		heating <= 0;
-			cooling <= 0;
-		end
-	     end
-	     if ((heating==0)&(cooling==0)) begin
-		if(temperature<=5'b10010) begin
-          		heating <= 1;
-			cooling <= 0;
-		end
-	     	if (temperature>=5'b10110) begin
-          		cooling <= 1;
-		     	heating <= 0;
-	     	end
-	     end
-	     if((heating==0)&(cooling==1)) begin
-		if (temperature<=5'b10100) begin
-          		cooling <= 0;
-			heating <= 0;
-		end
-	     end
-     end               
-            
+	if(((5'b10010<temperature<5'b10110)&&(cooling==0)&&(temperature==0))||((temperature>=5'b10100)&&(heating==1))||((temperature<=5'b10100)&&(cooling==1))) begin
+		cooling = 0;
+		heating = 0;
+	end
+	else if(((temperature>=5'b10110)&&(cooling==0)&&(heating==0))||((temperature>=5'b10110)&&(cooling==0)&&(heating==1))||((temperature>=5'b10110)&&(cooling==1)&&(heating==0))||((temperature>=5'b10110)&&(cooling==1)&&(heating==1))||((temperature>5'b10100)&&(cooling==1))) begin
+		cooling = 1;
+		heating = 0;
+	end
+	else if(((temperature<=5'b10010)&&(cooling==0)&&(heating==0))||((temperature<=5'b10010)&&(cooling==0)&&(heating==1))||((temperature<=5'b10010)&&(cooling==1)&&(heating==0))||((temperature<=5'b10010)&&(cooling==1)&&(heating==1))||((temperature<5'b10100)&&(heating==1))) begin
+		cooling = 0;
+		heating = 1;
+	end
+     end      
+	       
 endmodule
 

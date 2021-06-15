@@ -49,24 +49,3 @@ update_compile_order -fileset sim_1
 
 launch_simulation
 run 1000ns
-
-
-read_verilog "top.v"
-read_verilog "top_tb.v"
-
-update_compile_order -fileset sources_1
-update_compile_order -fileset sim_1
-
-set_property top ${sim_top} [get_filesets sim_1]
-set_property include_dirs ${proj_dir} [get_filesets sim_1]
-set_property simulator_language Mixed [current_project]
-set_property verilog_define { {SIMULATION=1} } [get_filesets sim_1]
-set_property -name xsim.more_options -value {-testplusarg TESTNAME=basic_test} -objects [get_filesets sim_1]
-set_property runtime {} [get_filesets sim_1]
-set_property target_simulator xsim [current_project]
-set_property compxlib.compiled_library_dir {} [current_project]
-set_property top_lib xil_defaultlib [get_filesets sim_1]
-update_compile_order -fileset sim_1
-
-launch_simulation
-run 1000ns

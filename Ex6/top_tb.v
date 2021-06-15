@@ -19,7 +19,7 @@ reg enable;
 reg [2:0] colour;
 reg err;
 wire [23:0] rgb;
-reg [23:0] test;
+reg [23:0] rgb_test;
   
 initial begin
   clk = 1'b0;
@@ -27,77 +27,31 @@ initial begin
       #(CLK_PERIOD/2) clk=~clk;
 end
 
-initial begin
-	err = 0;
-	enable = 0;
 	
-	#(CLK_PERIOD)
+initial begin
+	enable = 1;
+	err = 0;
 	colour = 3'b000;
-	if (rgb != 24'b0) begin
-		$display("***TEST FAILED :(***");
+
+	#CLK_PERIOD
+	if(rgb!=24'b0) begin
+		$display("***TEST FAILED! :( ***");
 		err = 1;
 	end
 
 	forever begin
-		enable = 1;
+		#CLK_PERIOD
+		rgb_test = rgb;
+		enable = 0;
+		colour <= (colour + 3'b001);
 
-		#(CLK_PERIOD)
-		colour = 3'b000;
-		if (rgb!=24'b0) begin
-			$display("***TEST FAILED :(***");
+		#CLK_PERIOD
+		if(rgb_test!=rgb)  begin
 			err = 1;
-		end
-		
-		#(CLK_PERIOD)
-		colour = 3'b001;
-		if (rgb!=24'b000000000000000011111111) begin
 			$display("***TEST FAILED :( ***");
-			err = 1;
-		end
-
-		#(CLK_PERIOD)
-		colour = 3'b010;
-		if (rgb!=24'b000000001111111100000000) begin
-			$display("***TEST FAILED :( ***");
-			err = 1;
-		end
-
-		#(CLK_PERIOD)
-		colour = 3'b011;
-		if (rgb!=24'b000000001111111111111111) begin
-			$display("***TEST FAILED :( ***");
-			err = 1;
-		end
-
-		#(CLK_PERIOD)
-		colour = 3'b100;
-		if (rgb!=24'b111111110000000000000000) begin
-			$display("***TEST FAILED :( ***");
-			err = 1;
-		end
-
-		#(CLK_PERIOD)
-		colour = 3'b101;
-		if (rgb!=24'b111111110000000011111111) begin
-			$display("***TEST FAILED :( ***");
-			err = 1;
-		end
-
-		#(CLK_PERIOD)
-		colour = 3'b110;
-		if (rgb!=24'b111111111111111100000000) begin
-			$display("***TEST FAILED :( ***");
-			err = 1;
-		end
-
-		#(CLK_PERIOD)
-		colour = 3'b111;
-		if (rgb!=24'b111111111111111111111111) begin
-			$display("***TEST FAILED :( ***");
-			err = 1;
 		end
 	end
-	end
+end
   
  initial begin
     #500

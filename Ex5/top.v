@@ -30,24 +30,24 @@ module AC(
      always @(posedge clk) begin
 	     if ((heating==1)&(cooling==0)) begin
 		if(temperature>=5'b10100) begin
-          		heating <= 0
-			cooling <= 0
+          		heating<=0
+			cooling<=0
 		end
 	     end
 	     if ((heating==0)&(cooling==0)) begin
 		if(temperature<=5'b10010) begin
-          		heating <= 1;
-			cooling <= 0;
+          		heating<=1;
+			cooling<=0;
 		end
 	     	if (temperature>=5'b10110) begin
-          		cooling <= 1;
-		     	heating <= 0;
+          		cooling<=1;
+		     	heating<=0;
 	     	end
 	     end
 	     if((heating==0)&(cooling==1)) begin
 		if (temperature<=5'b10100) begin
-          		cooling <= 0;
-			heating <= 0;
+          		cooling<=0;
+			heating<=0;
 		end
 	     end
      end               

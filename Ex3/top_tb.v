@@ -30,47 +30,48 @@ module top_tb(
             #(CLK_PERIOD/2) clk=~clk;
     end
 
-    initial begin
-	    err = 0;
-	    change = 1;
-	    rst = 1;
-	    clk = 0;
-	    on_off = 0;
-	    #6
-	    forever begin
-            	#(CLK_PERIOD - 6) 
-		if (counter_out != counter_out_prev)
-		begin
-			$display("***TEST FAILED! tick gap error");
+
+initial begin
+	err = 0;
+	rst = 1;
+	change = 0;
+	on_off = 1;
+	prev_counter_out = 0;
+	
+	#CLK_PERIOD
+	forever begin
+		prev_counter_out = counter_out;
+		#CLK_PERIOD
+		if(((counter_out!=0)&&(rst==1))||((counter_out!=prev_counter_out)&&(change==0)&&(rst==0))||((counter_out!=prev_counter_out+1)&&(change==1)&&(rst==0)&&(on_off==1))||((counter_out!=prev_counter_out-1)&&(change==1)&&(rst==0)&&(on_off==0))) begin
+			$display("***TEST FAILED! :( ***");
 			err = 1;
 		end
-		#6
-            	if((on_off&&(counter_out==counter_out_prev))|(!on_off&&(counter_out!=counter_out_prev))) begin
-		        $display("***TEST FAILED! enable error");
-		        err = 1;
-		end
-            	if((change&&(counter_out!=counter_out_prev + 1))|(!change&&(counter_out!=counter_out_prev - 1))) begin
-		        $display("***TEST FAILED! direction error");
-		        err = 1; 
-		end
-		if(rst&&(counter_out!=0)) begin
-		        $display("***TEST FAILED! rst error");
-		        err = 1;
-		end
-		    
-	    counter_out_prev = counter_out;
-            if (on_off == 0)
-            on_off = 1;
-            if (counter_out==8'b00000011)
-            	change = 0;
-            if ((change == 0) & (counter_out == 8'b00000001))
-		rst = 1;
-	    if (counter_out == 0)
+
 		rst = 0;
-	    if (rst == 1)
+		prev_counter_out = counter_out;
+		#CLK_PERIOD
+		if(((counter_out!=0)&&(rst==1))||((counter_out!=prev_counter_out)&&(change==0)&&(rst==0))||((counter_out!=prev_counter_out+1)&&(change==1)&&(rst==0)&&(on_off==1))||((counter_out!=prev_counter_out-1)&&(change==1)&&(rst==1)&&(on_off==0))) begin
+			$display("***TEST FAILED! :( ***");
+			err = 1;
+		end
+
 		change = 1;
-            end
-	    
+		prev_counter_out = counter_out;
+		#CLK_PERIOD
+		if(((counter_out!=0)&&(rst==1))||((counter_out!=prev_counter_out)&&(change==0)&&(rst==0))||((counter_out!=prev_counter_out+1)&&(change==1)&&(rst==0)&&(on_off==1))||((counter_out!=prev_counter_out-1)&&(change==1)&&(rst==0)&&(on_off==0))) begin
+			$display("***TEST FAILED! :( ***");
+			err = 1;
+			end
+
+		on_off = 0;
+		prev_counter_out = counter_out;
+		#CLK_PERIOD
+		if(((counter_out!=0)&&(rst==1))||((counter_out!=prev_counter_out)&&(change==0)&&(rst==0))||((counter_out!=prev_counter_out+1)&&(change==1)&&(rst==0)&&(on_off==1))||((counter_out!=prev_counter_out-1)&&(change==1)&&(rst==0)&&(on_off==0))) begin
+			$display("***TEST FAILED! :( ***");
+			err = 1;
+		end
+
+	end
 	end
     
     initial begin

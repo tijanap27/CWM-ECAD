@@ -41,7 +41,7 @@ initial begin
     end
 
     sel = 1;
-    #(3*CLK_PERIOD)
+    #(CLK_PERIOD)
     if (light!=24'h0000FF) begin
 	    $display("***TEST FAILED!2 :(***");
         err=1;

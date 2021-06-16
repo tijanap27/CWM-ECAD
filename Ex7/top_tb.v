@@ -84,7 +84,7 @@ initial begin
 end
 	
 	initial begin
-	  #500
+	  #300
 	  if (err==0) begin
 		  $display("***TEST PASSED***");
 		  $finish;

@@ -27,7 +27,7 @@ module Lights_Selector(
 	wire [23:0] rgb;
 
 LED myled(.clk(clk),
-	  .rst(rst)
+	  .rst(rst),
 	  .button(button),
           .colour(colour)
 	  );

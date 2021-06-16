@@ -61,9 +61,6 @@ initial begin
         button = 1;
 
         #(CLK_PERIOD)
-        button = 0;
-
-        #(CLK_PERIOD)
         if (light == prev_light) begin
             $display("***TEST FAILED! :(***");
             err = 1;

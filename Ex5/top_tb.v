@@ -52,6 +52,8 @@ module top_tb(
     	temperature <= temperature + 5'b00001;
     	if (temperature>5'b11111)
 		temperature<=5'b00000;
+	    	heating = 1;
+	    	cooling = 0;
 	    
     	end 
   end

@@ -31,8 +31,6 @@ module top_tb(
   initial begin
     err = 0;
     temperature = 5'b01111; // 15
-    heating = 1;
-    cooling = 0;
     
     forever begin
     	#CLK_PERIOD
@@ -52,8 +50,6 @@ module top_tb(
     	temperature <= temperature + 5'b00001;
     	if (temperature>5'b11111)
 		temperature<=5'b00000;
-	    	heating = 1;
-	    	cooling = 0;
 	    
     	end 
   end

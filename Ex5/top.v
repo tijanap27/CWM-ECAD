@@ -19,40 +19,30 @@
 module AC(
     input clk,
     input [4:0] temperature,
-    output reg heating,
-    output reg cooling
+    output heating,
+    output cooling
     );
 
 // 18 = 10010
 // 20 = 10100
 // 22 = 10110
 	
-     always @(posedge clk) begin
-	     if(((5'b10010<temperature<5'b10110)&&(cooling==0)&&(heating==0))||((temperature>=5'b10100)&&(heating==1))||((temperature<=5'b10100)&&(cooling==1))) begin
-		cooling <= #1 0;
-		heating <= #1 0;
-	end
-	else if(((temperature>=5'b10110)&&(cooling==0)&&(heating==0))||((temperature>=5'b10110)&&(cooling==0)&&(heating==1))||((temperature>=5'b10110)&&(cooling==1)&&(heating==0))||((temperature>=5'b10110)&&(cooling==1)&&(heating==1))||((temperature>5'b10100)&&(cooling==1))) begin
-		cooling <= #1 1;
-		heating <= #1 0;
-	end
-	else if(((temperature<=5'b10010)&&(cooling==0)&&(heating==0))||((temperature<=5'b10010)&&(cooling==0)&&(heating==1))||((temperature<=5'b10010)&&(cooling==1)&&(heating==0))||((temperature<=5'b10010)&&(cooling==1)&&(heating==1))||((temperature<5'b10100)&&(heating==1))) begin
-		cooling <= #1 0;
-		heating <= #1 1;
-	end
-	     else if(temperature<5'd18) begin
-		     cooling <= #1 0;
-		     heating <= #1 1;
-	     end
-	     else if (temperature>=5'd18 && temperature<=5'd22) begin
-		     cooling <= #1 0;
-		     heating <= #1 0;
-	     end
-	     else if (temperature>5'd22) begin
-		     cooling <= #1 1;
-		     heating <= #1 0; 
-	     end     
-     end      
+  wire idle; 
+  reg [1:0] state;
+  
+  assign heating = (state == 2'b1); 
+  assign cooling = (state == 2'b10);
+  assign idle = (state == 2'b0);
+  
+  always @(posedge clk) begin
+    case (state)
+      2'b1 : state <= #1 temperature<5'd20 ? 2'b1 : 2'b0;
+      2'b10 : state <= #1 temperature>5'd20 ? 2'b10 : 2'b0;
+      2'b0 : state <= #1 temperature>=5'd22 ? 2'b10 : temperature<=5'd18 ? 2'b1 : 2'b0; 
+      default : state <= #1 2'b0;
+    endcase
+
+  end
 	       
 endmodule
 

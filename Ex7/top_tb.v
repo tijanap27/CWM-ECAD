@@ -30,47 +30,47 @@ module top_tb(
   
   
 	initial begin
-    rst = 1;
+   	  rst = 1;
 	  button = 0;
 	  sel = 0;
 	  err = 0;
     
-    #(CLK_PERIOD)
+	#(CLK_PERIOD*3)
 	  if (light!=24'hFFFFFF) begin
-      $display("*** TEST FAILED :( ***");
-		  err = 1;
+      		$display("*** TEST FAILED :( ***");
+		err = 1;
 	  end
     
-  	sel = 1;
+  	  sel = 1;
 	  rst = 1;
     
-    #(CLK_PERIOD)
-	  if ((sel==1)&&(rst==1)&&(light!=24'b0)) begin
-      $display("*** TEST FAILED :( ***");
-		  err = 1;
-	  end
+	#(CLK_PERIOD*3)
+	if ((sel==1)&&(rst==1)&&(light!=24'b0)) begin
+      		$display("*** TEST FAILED :( ***");
+		err = 1;
+	end
   
-    sel = 1;
-	  rst = 0;
-	  button = 1;
-    #CLK_PERIOD
-    prev_light = light;
-    #CLK_PERIOD
-    if(prev_light!=light) begin
-      $display("*** TEST FAILED! :( ***");
-	    err = 1;
+    	sel = 1;
+	rst = 0;
+	button = 1;
+    	#CLK_PERIOD
+    	prev_light = light;
+    	#CLK_PERIOD
+    	if(prev_light!=light) begin
+      		$display("*** TEST FAILED! :( ***");
+	    	err = 1;
 	  end
     
-    button = 1;
-    #CLK_PERIOD
-    forever begin
-      prev_light=light;
-      #CLK_PERIOD
-      if(prev_light==light) begin
-        $display("*** TEST FAILED! :( ***");
-	      err = 1;
-	    end
-    end
+    	button = 1;
+    	#CLK_PERIOD
+    	forever begin
+      		prev_light=light;
+		#(CLK_PERIOD*3)
+      		if(prev_light==light) begin
+        		$display("*** TEST FAILED! :( ***");
+	      		err = 1;
+		end
+    	end
  end
   
   

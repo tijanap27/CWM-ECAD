@@ -36,7 +36,7 @@ initial begin
 
     #(CLK_PERIOD)
     if (light!=24'hFFFFFF) begin
-        $display("***TEST FAILED! :(***");
+	    $display("***TEST FAILED!1 :(***");
         err = 1;
     end
 
@@ -45,13 +45,13 @@ initial begin
     rst = 0;
     #(3*CLK_PERIOD)
     if (light!=24'h0000FF) begin
-        $display("***TEST FAILED! :(***");
+	    $display("***TEST FAILED!2 :(***");
         err=1;
     end
 
     #(CLK_PERIOD)
     if (light!=prev_light) begin
-        $display("***TEST FAILED! :(***");
+	    $display("***TEST FAILED!3 :(***");
         err=1; 
     end
 

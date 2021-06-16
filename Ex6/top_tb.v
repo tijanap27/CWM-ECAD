@@ -26,31 +26,28 @@ initial begin
   forever
       #(CLK_PERIOD/2) clk=~clk;
 end
-
 	
 initial begin
-	enable = 1;
-	err = 0;
-	colour = 3'b000;
+    enable = 0;
+    err = 0;
+    colour = 3'b000;
+	
+    #(CLK_PERIOD)
+    if (rgb!=24'b0) begin
+	$display("***TEST FAILED :(***");
+	err = 1;
+    end
 
-	#CLK_PERIOD
-	if(rgb!=24'b0) begin
-		$display("***TEST FAILED! :( ***");
-		err = 1;
-	end
-
-	forever begin
-		#CLK_PERIOD
-		rgb_test = rgb;
-		enable = 0;
-		colour <= (colour + 3'b001);
-
-		#CLK_PERIOD
-		if(rgb_test!=rgb)  begin
-			err = 1;
-			$display("***TEST FAILED :( ***");
-		end
-	end
+    forever begin
+        enable = 1;
+        rgb_prev = rgb;
+        colour <= (colour + 3'd1);
+        #(3*CLK_PERIOD)
+        if (rgb_prev == rgb) begin
+		$display("***TEST FAILED :(***);
+	    	err = 1;
+        end
+    end
 end
   
  initial begin

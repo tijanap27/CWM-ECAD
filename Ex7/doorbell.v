@@ -7,7 +7,7 @@ module doorbell(
     output out
     );
     
-    wire out;
+    wire [23:0] out;
 
     assign #5 out = (sel) ? b: a;
       

@@ -40,11 +40,11 @@ initial begin
 
     forever begin
         enable = 1;
-        rgb_prev = rgb;
+        rgb_test = rgb;
         colour <= (colour + 3'd1);
         #(3*CLK_PERIOD)
-        if (rgb_prev == rgb) begin
-		$display("***TEST FAILED :(***);
+        if (rgb_test==rgb) begin
+		$display("***TEST FAILED :(***");
 	    	err = 1;
         end
     end

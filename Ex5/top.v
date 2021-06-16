@@ -29,17 +29,29 @@ module AC(
 	
      always @(posedge clk) begin
 	     if(((5'b10010<temperature<5'b10110)&&(cooling==0)&&(heating==0))||((temperature>=5'b10100)&&(heating==1))||((temperature<=5'b10100)&&(cooling==1))) begin
-		cooling = 0;
-		heating = 0;
+		cooling <= #1 0;
+		heating <= #1 0;
 	end
 	else if(((temperature>=5'b10110)&&(cooling==0)&&(heating==0))||((temperature>=5'b10110)&&(cooling==0)&&(heating==1))||((temperature>=5'b10110)&&(cooling==1)&&(heating==0))||((temperature>=5'b10110)&&(cooling==1)&&(heating==1))||((temperature>5'b10100)&&(cooling==1))) begin
-		cooling = 1;
-		heating = 0;
+		cooling <= #1 1;
+		heating <= #1 0;
 	end
 	else if(((temperature<=5'b10010)&&(cooling==0)&&(heating==0))||((temperature<=5'b10010)&&(cooling==0)&&(heating==1))||((temperature<=5'b10010)&&(cooling==1)&&(heating==0))||((temperature<=5'b10010)&&(cooling==1)&&(heating==1))||((temperature<5'b10100)&&(heating==1))) begin
-		cooling = 0;
-		heating = 1;
+		cooling <= #1 0;
+		heating <= #1 1;
 	end
+	     else if(temperature<5'd18) begin
+		     cooling <= #1 0;
+		     heating <= #1 1;
+	     end
+	     else if (temperature>=5'd18 && temperature<=5'd22) begin
+		     cooling <= #1 0;
+		     heating <= #1 0;
+	     end
+	     else if (temperature>5'd22) begin
+		     cooling <= #1 1;
+		     heating <= #1 0; 
+	     end     
      end      
 	       
 endmodule

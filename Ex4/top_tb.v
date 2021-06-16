@@ -89,6 +89,7 @@ module top_tb(
         		end
     		end		
 	end
+    end
 	
 	
 

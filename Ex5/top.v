@@ -28,7 +28,7 @@ module AC(
 // 22 = 10110
 	
      always @(posedge clk) begin
-	if(((5'b10010<temperature<5'b10110)&&(cooling==0)&&(temperature==0))||((temperature>=5'b10100)&&(heating==1))||((temperature<=5'b10100)&&(cooling==1))) begin
+	     if(((5'b10010<temperature<5'b10110)&&(cooling==0)&&(heating==0))||((temperature>=5'b10100)&&(heating==1))||((temperature<=5'b10100)&&(cooling==1))) begin
 		cooling = 0;
 		heating = 0;
 	end

@@ -42,6 +42,7 @@ initial begin
 	
     rst = 0;
     sel = 1;
+    button = 1;
     #(20*CLK_PERIOD)
 	if (light!=24'h000000) begin
 	    $display("***TEST FAILED!2 :(***");

@@ -38,7 +38,7 @@ module Sys(
 	.O  (clk)
       );
 
-AC my_AC(
+AC AC(
     .clk (clk),
     .temperature (temperature),
     .heating (heating),

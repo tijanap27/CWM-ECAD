@@ -60,7 +60,7 @@ initial begin
       $finish;
 end
 
-AC top (
+top top (
    .temp (temp),
    .clk_p (clk_p),
    .clk_n (clk_n),

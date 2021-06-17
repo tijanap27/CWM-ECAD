@@ -16,7 +16,11 @@
 module Sys(
     input clk_p,
     input clk_n,
-    input [4:0] temperature,
+    input temperature_0,
+    input temperature_1,
+    input temperature_2,
+    input temperature_3,
+    input temperature_4,
     output heating,
     output cooling
    );
@@ -40,7 +44,7 @@ module Sys(
 
 AC AC(
     .clk (clk),
-    .temperature (temperature),
+    .temperature ({temperature_4,temperature_3,temperature_2,temperature_1,temperature_0}),
     .heating (heating),
     .cooling (cooling)
 );

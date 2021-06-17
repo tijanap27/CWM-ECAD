@@ -15,28 +15,27 @@ module top_tb(
 parameter CLK_PERIOD = 10;
 
 reg clk_p;
-reg clk_n;
 reg [4:0] temperature;
 reg err;
 reg rst_n;
 wire heating;
 wire cooling;
+wire clk_n;
 
 initial begin
-   clk = 1'b0;
+   //clk = 1'b0;
    clk_p = 1'b0;
    clk_n = 1'b1;
    forever begin
-	#(CLK_PERIOD/2)
-	clk=~clk;
-	clk_p=~clk_p;
-	clk_n=~clk_n;
+	#(CLK_PERIOD/2) clk_p=~clk_p;
 end
+	assign clk_n=~clk_p;
 end
   
 initial begin
     err = 0;
     temperature = 5'b01111;
+    rst_n = 0;
     
     forever begin
         #CLK_PERIOD

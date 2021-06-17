@@ -18,7 +18,7 @@ module top(
     input clk_n,
     input [4:0] temperature,
     output heating;
-    output cooling;
+    output cooling
    );
     
 

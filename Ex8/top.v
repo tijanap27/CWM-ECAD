@@ -16,6 +16,7 @@
 module Sys(
     input clk_p,
     input clk_n,
+    input rst_n,
     input temperature_0,
     input temperature_1,
     input temperature_2,

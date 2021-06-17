@@ -46,19 +46,18 @@ initial begin
     #(20*CLK_PERIOD)
 	if (light!=24'h0000FF) begin
 	    $display("***TEST FAILED!2 :(***");
+		$finish;
         err=1;
     end
 
     prev_light = light;
     rst = 0;
-	button = 0;
     #(CLK_PERIOD)
     if (light!=prev_light) begin
 	    $display("***TEST FAILED!3 :(***");
         err=1; 
     end
 	
-	button = 1;
     #(CLK_PERIOD)
     forever begin
         prev_light = light;

@@ -14,21 +14,29 @@ module top_tb(
     
 parameter CLK_PERIOD = 10;
 
+reg clk_p;
+reg clk_n;
 reg [4:0] temperature;
 reg err;
+reg rst_n;
 wire heating;
 wire cooling;
 
 initial begin
-    clk = 1'b0;
-    forever
-      #(CLK_PERIOD/2) clk=~clk;
+   clk = 1'b0;
+   clk_p = 1'b0;
+   clk_n = 1'b1;
+   forever begin
+	#(CLK_PERIOD/2)
+	clk=~clk;
+	clk_p=~clk_p;
+	clk_n=~clk_n;
 end
-
+end
   
 initial begin
     err = 0;
-    temperature = 5'b01111; // 15
+    temperature = 5'b01111;
     
     forever begin
         #CLK_PERIOD
@@ -51,7 +59,6 @@ initial begin
 	    
     	end
   end
-
   
 initial begin
     #500
@@ -61,9 +68,14 @@ initial begin
 end
 
 Sys top (
-   .temp (temp),
+   .temperature_0 (temperature[0]),
+   .temperature_1 (temperature[1]),
+   .temperature_2 (temperature[2]),
+   .temperature_3 (temperature[3]),
+   .temperature_4 (temperature[4]),
    .clk_p (clk_p),
    .clk_n (clk_n),
+   .rst_n(rst_n),
    .heating (heating),
    .cooling (cooling)
 );

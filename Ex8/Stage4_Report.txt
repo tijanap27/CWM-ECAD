@@ -1,0 +1,8 @@
+1. No errors running. No critical warnings, but there are 3 warnings.
+2. WHS: 0.046
+3. WNS: 9.6
+4. LUT: 4 
+5. FF: 2 
+6. BRAM: 0 
+7. Total Power: 2.474
+8. 19min 38sec

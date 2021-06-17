@@ -43,7 +43,7 @@ module Sys(
 	.O  (clk)
       );
 
-AC AC(
+AC myAC(
     .clk (clk),
     .temperature ({temperature_4,temperature_3,temperature_2,temperature_1,temperature_0}),
     .heating (heating),

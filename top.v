@@ -4,12 +4,9 @@ module Smart_Home(
     input clk,
     input rst,
     input button,
-    input [3:0] intensity,
-    input button_blinders,
     input [4:0] temperature,
     output heating,
     output cooling,
-    output [1:0] out,
     output reg [2:0] colour
     );
   
@@ -19,13 +16,6 @@ module Smart_Home(
     .temperature(temperature),
     .heating(heating),
     .cooling(cooling)
-    );
-  
-  
-  blinds my_blings(
-    .intensity(intensity),
-    .button_blinders(button_blinders),
-    output [1:0] out
     );
   
   

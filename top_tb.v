@@ -46,3 +46,4 @@ module top_tb(
     .colour(colour)
   );
   
+endmodule

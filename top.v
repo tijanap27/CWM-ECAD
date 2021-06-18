@@ -7,7 +7,7 @@ module Smart_Home(
     input [4:0] temperature,
     output heating,
     output cooling,
-    output reg [2:0] colour
+    output [2:0] colour
     );
   
   

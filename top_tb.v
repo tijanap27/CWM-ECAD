@@ -8,14 +8,11 @@ module top_tb(
     reg clk;
     reg rst;
     reg button;
-    reg [3:0] intensity;
-    reg button_blinders;
     reg err;
     reg [4:0] temperature; 
     wire [2:0] colour;
     wire heating;
     wire cooling;
-    wire [1:0] out;
     reg [2:0] colour_prev;
 
     initial begin
@@ -103,17 +100,6 @@ module top_tb(
 		      	end
           	end      
       
-	#CLK_PERIOD
-      button_blinders = 1;
-      intensity = 4'b0;
-      if(out!=2'b11) begin 
-        err = 1;
-        $display("TEST FAILED :(");
-    	end 
-			
-	intensity = intesity + 4'b1;
-	if (intensity>=4'd10)
-		intenisty = 4'b0;
   end
     end
 
@@ -128,12 +114,9 @@ module top_tb(
     .clk(clk),
     .rst(rst),
     .button(button),
-    .intensity(intensity),
-    .button_blinders(button_blinders),
     .temperature(temperature),
     .heating(heating),
     .cooling(cooling),
-    .out(out),
     .colour(colour)
   );
   

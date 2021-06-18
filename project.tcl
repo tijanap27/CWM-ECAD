@@ -19,7 +19,9 @@ create_fileset -constrset -quiet constraints
 #add_files -fileset constraints -norecurse ${project_constraints}
 #set_property is_enabled false [get_files ${project_constraints}]
 
-
+read_verilog "AC.v"
+read_verilog "blinds.v"
+read_verilog "lights.v"
 read_verilog "top.v"
 read_verilog "top_tb.v"
 

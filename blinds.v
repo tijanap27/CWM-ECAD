@@ -1,6 +1,6 @@
 `timescale 1ns / 100ps
 
-module Blinds(
+module blinds(
     input intensity,
     input button,
     output [1:0] out

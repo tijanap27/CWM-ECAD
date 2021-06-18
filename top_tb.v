@@ -31,30 +31,30 @@ module top_tb(
       #CLK_PERIOD
       if(((green_c)&(yellow_c))|((green_c)&(red_c))|((yellow_c)&(red_c))) begin
         err = 1;
-        $display("*** Test Failed :( ***);
+	$display("*** Test Failed :( ***");
       end
       if(((green_p)&(yellow_p))|((green_p)&(red_p))|((yellow_p)&(red_p))) begin
         err = 1;
-        $display("*** Test Failed :( ***);
+        $display("*** Test Failed :( ***");
       end     
       if((green_c)&(green_p)) begin
         err = 1;
-        $display("*** Test Failed :( ***);
+        $display("*** Test Failed :( ***");
       end
       
       button = 1;
       #CLK_PERIOD
       if(((green_c)&(yellow_c))|((green_c)&(red_c))|((yellow_c)&(red_c))) begin
         err = 1;
-        $display("*** Test Failed :( ***);
+        $display("*** Test Failed :( ***");
       end
       if(((green_p)&(yellow_p))|((green_p)&(red_p))|((yellow_p)&(red_p))) begin
         err = 1;
-        $display("*** Test Failed :( ***);
+        $display("*** Test Failed :( ***");
       end     
       if((green_c)&(green_p)) begin
         err = 1;
-        $display("*** Test Failed :( ***);
+        $display("*** Test Failed :( ***");
       end
   end
   end

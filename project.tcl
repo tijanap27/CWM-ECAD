@@ -20,6 +20,8 @@ set_property is_enabled true [get_files ${project_constraints}]
 
 read_verilog "AC.v"
 read_verilog "lights.v"
+read_verilog "RGB_Converter.v"
+read_verilog "doorbell.v"
 read_verilog "top.v"
 #read_verilog "top_tb.v"
 

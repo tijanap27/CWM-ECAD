@@ -1,6 +1,6 @@
 `timescale 1ns / 100ps
 
-module Lights(
+module lights(
     input clk,
     input rst,
     input button,

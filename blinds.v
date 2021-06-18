@@ -2,7 +2,7 @@
 
 module blinds(
     input intensity,
-    input button,
+    input button_blinders,
     output [1:0] out
     );
     
@@ -18,7 +18,7 @@ module blinds(
     else if ((intensity<5)&&(intensity<=3) begin
           out = 2'b10;
     end
-    else if ((intensity<3)||(button==1) begin
+    else if ((intensity<3)||(button_blinders==1) begin
           out = 2'b11;
     end
 

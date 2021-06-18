@@ -1,6 +1,6 @@
 `timescale 1ns / 100ps
 
-module Sys(
+module Traffic(
   input button,
   input clk,
   output green_c,

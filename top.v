@@ -4,7 +4,7 @@ module Smart_Home(
     input clk,
     input rst,
     input button,
-    input intensity,
+    input [3:0] intensity,
     input button_blinders,
     input [4:0] temperature,
     output heating,

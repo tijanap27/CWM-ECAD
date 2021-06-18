@@ -25,3 +25,5 @@ module Smart_Home(
     .button(button),
     .colour(colour)
     );
+
+endmodule

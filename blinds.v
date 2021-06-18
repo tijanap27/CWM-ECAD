@@ -1,7 +1,7 @@
 `timescale 1ns / 100ps
 
 module blinds(
-    input intensity,
+    input [3:0] intensity,
     input button_blinders,
     output [1:0] out
     );
@@ -9,16 +9,16 @@ module blinds(
     wire [1:0] out;
   
     
-    if (intensity>=7) begin
-      out = 2'b00;
+    if (intensity>=4'd7) begin
+        out = 2'b00;
     end
-    else if ((intensity<=7)&&(intensity>=5) begin
+    else if ((intensity<=4'd7)&&(intensity>=4'd5) begin
         out = 2'b01;
     end
-    else if ((intensity<5)&&(intensity<=3) begin
+    else if ((intensity<4'd5)&&(intensity<=4'd3) begin
           out = 2'b10;
     end
-    else if ((intensity<3)||(button_blinders==1) begin
+    else if ((intensity<4'd3)||(button_blinders==1) begin
           out = 2'b11;
     end
 

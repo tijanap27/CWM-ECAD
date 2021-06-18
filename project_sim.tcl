@@ -19,6 +19,8 @@ create_fileset -constrset -quiet constraints
 
 read_verilog "top.v"
 read_verilog "AC.v"
+read_verilog "RGB_Converter.v"
+read_verilog "doorbell.v"
 read_verilog "lights.v"
 read_verilog "top_tb.v"
 

@@ -96,21 +96,26 @@ module top_tb(
 	          			err = 1;
 		     		end
         		end
-			else begin
-				if ((button&(colour!=3'b001))| (!button&(colour!=colour_prev))) begin
+		else begin
+			if ((button&(colour!=3'b001))| (!button&(colour!=colour_prev))) begin
             				$display("***TEST FAILED! Button doesn't work for 6! colour==%d, colour_prev==%d, button='%d' ***", colour, colour_prev, button);
 	          			err = 1;
-		      		end
-          end      
+		      	end
+          	end      
       
+	#CLK_PERIOD
       button_blinders = 1;
+      intensity = 4'b0;
       if(out!=2'b11) begin 
         err = 1;
         $display("TEST FAILED :(");
-      
     	end 
+			
+	intensity = intesity + 4'b1;
+	if (intensity>=4'd10)
+		intenisty = 4'b0;
   end
-
+    end
 
     initial begin
       #500

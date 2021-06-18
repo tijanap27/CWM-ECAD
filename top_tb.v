@@ -122,10 +122,16 @@ module top_tb(
     .clk(clk),
     .rst(rst),
     .button(button),
-    .temperature(temperature),
+    .temperature_0 (temperature[0]),
+    .temperature_1 (temperature[1]),
+    .temperature_2 (temperature[2]),
+    .temperature_3 (temperature[3]),
+    .temperature_4 (temperature[4]),
     .heating(heating),
     .cooling(cooling),
-    .colour(colour)
+    .colour_0(colour[0]),
+    .colour_1(colour[1]),
+    .colour_2(colour[2])
   );
   
 endmodule
